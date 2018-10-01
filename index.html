@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Chris Grabosky Instagram Dump">
+    <meta name="author" content="graboskyc">
+
+    <title>graboskyc Instagram</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/album.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <section class="jumbotron text-center" style="background: url(assets/jumbotron.JPG); background-repeat: no-repeat; background-position:  center center; background-size: cover;">
+      <div class="container">
+        <h1 class="jumbotron-heading" style="color:#ffffff;font-size:60px;font-weight: bold;">Instagram</h1>
+        <p class="lead" style="color:#ffffff;">An export of Chris Grabosky (graboskyc) Instagram profile</p>
+      </div>
+    </section>
+
+    <div class="album text-muted">
+      <div class="container">
+        <div class="row" id="mainctr">
+        </div>
+      </div>
+    </div>
+
+    <div id="users-device-size">
+        <div id="xs" class="visible-xs"></div>
+        <div id="sm" class="visible-sm"></div>
+        <div id="md" class="visible-md"></div>
+        <div id="lg" class="visible-lg"></div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="js/holder.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script src="js/ga.js"></script>
+    <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.0.13/stitch.js"></script>
+    <script>
+        function buildGrid(docs) {
+            docs.map(media=> {
+                var cap = "";
+                var loc = "";
+                var d = media.taken_at;
+                var ds = (d.getUTCMonth()+1) +"/"+ d.getUTCDate() + "/"+  d.getUTCFullYear() + " " + d.getUTCHours() + ":" + d.getUTCMinutes();
+                if(media.hasOwnProperty("caption")) { cap = media.caption; }
+                if(media.hasOwnProperty("location")) { loc = media.location; }
+                var apStr = '<div class="card">';
+                if (media.type == "picture") {
+                    apStr = apStr + '<a href="media.html#!'+media._id+'" border="0"><img src="assets/'+media.path+'" width="280" height="280" /></a>';
+                }
+                else if (media.type == "video") {
+                    apStr = apStr + '<video width="280" height="280" controls><source src="assets/'+media.path+'" type="video/mp4"></video>';
+                }
+                apStr = apStr + '<p class="card-text">'+ds+'</p> \
+                    <p class="card-text">'+loc+'</p> \
+                    <p class="card-text">'+cap+'</p> \
+                    </div>';
+                $("#mainctr").append(apStr);
+            });
+        }
+
+        $(function() {
+        const client = stitch.Stitch.initializeDefaultAppClient('ig-epove');
+
+        const db = client.getServiceClient(stitch.RemoteMongoClient.factory, 'mongodb-atlas').db('ig');
+
+        client.auth.loginWithCredential(new stitch.AnonymousCredential()).then(() => 
+        db.collection('media').find({type:"picture"},{ sort: {taken_at: -1}}).asArray()).then(buildGrid).catch(err => {console.error(err)});
+        });
+    </script>
+  </body>
+</html>

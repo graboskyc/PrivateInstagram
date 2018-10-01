@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Chris Grabosky Instagram Dump">
+    <meta name="author" content="graboskyc">
+
+    <title>graboskyc Instagram</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/album.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <section class="jumbotron text-center" style="background: url(assets/jumbotron.JPG); background-repeat: no-repeat; background-position:  center center; background-size: cover;">
+      <div class="container">
+        <h1 class="jumbotron-heading"><a href="index.html" style="color:#ffffff;font-size:60px;font-weight: bold;">Instagram</a></h1>
+        <p class="lead" style="color:#ffffff;">An export of Chris Grabosky (graboskyc) Instagram profile</p>
+      </div>
+    </section>
+
+    <div class="album text-muted">
+      <div class="container">
+        <div class="row" id="mainctr">
+        </div>
+        <div id="disqus_thread"></div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="js/holder.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script src="js/ga.js"></script>
+    <script src="js/bson.bundle.js"></script>
+    <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.0.13/stitch.js"></script>
+    <script>
+        function build(docs) {
+            console.log(docs);
+            docs.map(media=> {
+                var cap = "";
+                var loc = "";
+                var d = media.taken_at;
+                var ds = (d.getUTCMonth()+1) +"/"+ d.getUTCDate() + "/"+  d.getUTCFullYear() + " " + d.getUTCHours() + ":" + d.getUTCMinutes();
+                if(media.hasOwnProperty("caption")) { cap = media.caption; }
+                if(media.hasOwnProperty("location")) { loc = media.location; }
+                var apStr = '<div class="card" style="width:100% !important;">';
+                if (media.type == "picture") {
+                    apStr = apStr + '<img src="assets/'+media.path+'" style="width:100% !important;" /> ';
+                }
+                else if (media.type == "video") {
+                    apStr = apStr + '<video style="width:100% !important;" controls><source src="assets/'+media.path+'" type="video/mp4"></video>';
+                }
+                apStr = apStr + '<p>'+ds+'</p> \
+                    <p>'+loc+'</p> \
+                    <p>'+cap+'</p> \
+                    </div>';
+                $("#mainctr").append(apStr);
+            });
+        }
+
+        $(function() {
+            var url = window.self.location.href;
+            var kvp = url.split("#!");
+            if(kvp.length != 2) {
+                window.self.location = "index.html";
+            }
+            else {
+                const client = stitch.Stitch.initializeDefaultAppClient('ig-epove');
+
+                const db = client.getServiceClient(stitch.RemoteMongoClient.factory, 'mongodb-atlas').db('ig');
+
+                client.auth.loginWithCredential(new stitch.AnonymousCredential()).then(() => 
+                db.collection('media').find({_id:BSON.ObjectID(kvp[1])},{limit:1}).asArray()).then(build).catch(err => {console.error(err)});
+            }
+        });
+    </script>
+    <script>
+        var url = window.self.location.href;
+        var kvp = url.split("#!");
+        var disqus_config = function () {
+            this.page.url = "http://ig.gsky.us/media.html#!"+kvp[1];    // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = kvp[1];                              // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://ig-gsky-us.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+    </script>                                        
+  </body>
+</html>
