@@ -22,7 +22,7 @@
         background-size: cover !important;
         width:100%; height:100%;
       }
-      p { color:#fff !important;
+      .pborder { color:#fff !important;
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;}
     </style>
   </head>
@@ -70,9 +70,9 @@
           $.each(cards, function(index, c) {
             apStr = apStr + '<div class="card col" onclick="window.location=\'media.html#!'+c.id+'\';"> \
             <div class="cardinterior" style="background:url(https://gskywebstore.blob.core.windows.net/media/'+c.path+')">\
-            <div style="position:absolute;bottom:5px;width:90%;left:5%;"><p>'+c.taken+'</p> \
-            <p>'+c.location+'</p> \
-            <p>'+c.caption+'</p></div> \
+            <div style="position:absolute;bottom:5px;width:90%;left:5%;"><p class="pborder">'+c.taken+'</p> \
+            <p class="pborder">'+c.location+'</p> \
+            <p class="pborder">'+c.caption+'</p></div> \
             </div> \
             </div>';
           });
