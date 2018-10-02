@@ -37,9 +37,7 @@
     </section>
 
     <div class="album text-muted">
-      <div class="container">
-        <div class="row" id="mainctr">
-        </div>
+      <div class="container" id="mainctr">
       </div>
     </div>
 
@@ -63,35 +61,48 @@
     <script src="js/ga.js"></script>
     <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.0.13/stitch.js"></script>
     <script>
-        function buildGrid(docs) {
-            docs.map(media=> {
-                var cap = "";
-                var loc = "";
-                var d = media.taken_at;
-                var ds = (d.getUTCMonth()+1) +"/"+ d.getUTCDate() + "/"+  d.getUTCFullYear() + " " + d.getUTCHours() + ":" + d.getUTCMinutes();
-                if(media.hasOwnProperty("caption")) { cap = media.caption; }
-                if(media.hasOwnProperty("location")) { loc = media.location; }
-                if(cap.length>35) { cap = cap.substr(0,34) + "...";}
-                var apStr = '<div class="card" onclick="window.location=\'media.html#!'+media._id+'\';"> \
-                  <div class="cardinterior" style="background:url(assets/'+media.path+')">\
-                  <div style="position:absolute;bottom:5px;width:90%;left:5%;"><p>'+ds+'</p> \
-                  <p>'+loc+'</p> \
-                  <p>'+cap+'</p></div> \
-                  </div> \
-                  </div>';
-                $("#mainctr").append(apStr);
-            });
-            $(".card").height($(".card").width());
+      var cards = [];
+      function bufferRow(card) {
+        cards.push(card);
+        if(cards.length == 3) {
+          var apStr = '<div class="row">';
+          $.each(cards, function(index, c) {
+            apStr = apStr + '<div class="card col" onclick="window.location=\'media.html#!'+c.id+'\';"> \
+            <div class="cardinterior" style="background:url(https://gskywebstore.blob.core.windows.net/media/'+c.path+')">\
+            <div style="position:absolute;bottom:5px;width:90%;left:5%;"><p>'+c.taken+'</p> \
+            <p>'+c.location+'</p> \
+            <p>'+c.caption+'</p></div> \
+            </div> \
+            </div>';
+          });
+          apStr = apStr + "</div>";
+          cards = [];
+          $("#mainctr").append(apStr);
+          $(".card").height($(".card").width());
         }
+      }
+      function buildGrid(docs) {
+          docs.map(media=> {
+              var cap = "";
+              var loc = "";
+              var d = media.taken_at;
+              var ds = (d.getUTCMonth()+1) +"/"+ d.getUTCDate() + "/"+  d.getUTCFullYear() + " " + d.getUTCHours() + ":" + d.getUTCMinutes();
+              if(media.hasOwnProperty("caption")) { cap = media.caption; }
+              if(media.hasOwnProperty("location")) { loc = media.location; }
+              if(cap.length>35) { cap = cap.substr(0,34) + "...";}
+              var card = {caption:cap, location:loc, path:media.path, id:media._id, taken:ds};
+              bufferRow(card);
+          });
+      }
 
-        $(function() {
-        const client = stitch.Stitch.initializeDefaultAppClient('ig-epove');
+      $(function() {
+      const client = stitch.Stitch.initializeDefaultAppClient('ig-epove');
 
-        const db = client.getServiceClient(stitch.RemoteMongoClient.factory, 'mongodb-atlas').db('ig');
+      const db = client.getServiceClient(stitch.RemoteMongoClient.factory, 'mongodb-atlas').db('ig');
 
-        client.auth.loginWithCredential(new stitch.AnonymousCredential()).then(() => 
-        db.collection('media').find({type:"picture"},{ sort: {taken_at: -1}}).asArray()).then(buildGrid).catch(err => {console.error(err)});
-        });
+      client.auth.loginWithCredential(new stitch.AnonymousCredential()).then(() => 
+      db.collection('media').find({type:"picture"},{ sort: {taken_at: -1}}).asArray()).then(buildGrid).catch(err => {console.error(err)});
+      });
     </script>
   </body>
 </html>

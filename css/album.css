@@ -30,8 +30,6 @@ body {
   
   .card {
     float: left;
-    width: 33.333%;
-    height: 300px;
     padding: .75rem;
     margin-bottom: 2rem;
     border: 0;
