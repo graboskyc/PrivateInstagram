@@ -59,7 +59,7 @@
                 if(media.hasOwnProperty("location")) { loc = media.location; }
                 var apStr = '<div class="card" style="width:100% !important;">';
                 if (media.type == "picture") {
-                    apStr = apStr + '<img src="assets/'+media.path+'" style="width:100% !important;" /> ';
+                    apStr = apStr + '<img src="https://gskywebstore.blob.core.windows.net/media/'+media.path+'" style="width:100% !important;" /> ';
                 }
                 else if (media.type == "video") {
                     apStr = apStr + '<video style="width:100% !important;" controls><source src="https://gskywebstore.blob.core.windows.net/media/'+media.path+'" type="video/mp4"></video>';

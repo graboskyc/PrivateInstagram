@@ -7,7 +7,7 @@
     <meta name="description" content="Chris Grabosky Instagram Dump">
     <meta name="author" content="graboskyc">
 
-    <title>My Photos</title>
+    <title>My Videos</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 
     <!-- Bootstrap core CSS -->
@@ -31,9 +31,9 @@
 
     <section class="jumbotron text-center" style="background: url(assets/jumbotron.JPG); background-repeat: no-repeat; background-position:  center center; background-size: cover;">
       <div class="container">
-        <h1 class="jumbotron-heading" style="color:#ffffff;font-size:60px;font-weight: bold;">Photos</h1>
+        <h1 class="jumbotron-heading" style="color:#ffffff;font-size:60px;font-weight: bold;">Videos</h1>
         <p class="lead" style="color:#ffffff;">An export of Chris Grabosky (graboskyc) Instagram profile</p>
-        <p class="lead" style="color:#ffffff;"><a href="videos.html" style="color:#ffffff;">Click here for videos.</a></p>
+        <p class="lead" style="color:#ffffff;"><a href="index.html" style="color:#ffffff;">Click here for photos.</a></p>
       </div>
     </section>
 
@@ -69,11 +69,10 @@
           var apStr = '<div class="row">';
           $.each(cards, function(index, c) {
             apStr = apStr + '<div class="card col" onclick="window.location=\'media.html#!'+c.id+'\';"> \
-            <div class="cardinterior" style="background:url(https://gskywebstore.blob.core.windows.net/media/'+c.path+')">\
+            <video style="width:100% !important;" controls><source src="https://gskywebstore.blob.core.windows.net/media/'+c.path+'" type="video/mp4"></video> \
             <div style="position:absolute;bottom:5px;width:90%;left:5%;"><p>'+c.taken+'</p> \
             <p>'+c.location+'</p> \
             <p>'+c.caption+'</p></div> \
-            </div> \
             </div>';
           });
           apStr = apStr + "</div>";
@@ -102,7 +101,7 @@
       const db = client.getServiceClient(stitch.RemoteMongoClient.factory, 'mongodb-atlas').db('ig');
 
       client.auth.loginWithCredential(new stitch.AnonymousCredential()).then(() => 
-      db.collection('media').find({type:"picture"},{ sort: {taken_at: -1}}).asArray()).then(buildGrid).catch(err => {console.error(err)});
+      db.collection('media').find({type:"video"},{ sort: {taken_at: -1}}).asArray()).then(buildGrid).catch(err => {console.error(err)});
       });
     </script>
   </body>
