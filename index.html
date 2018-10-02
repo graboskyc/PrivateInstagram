@@ -7,7 +7,7 @@
     <meta name="description" content="Chris Grabosky Instagram Dump">
     <meta name="author" content="graboskyc">
 
-    <title>graboskyc Instagram</title>
+    <title>My Photos</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 
     <!-- Bootstrap core CSS -->
@@ -15,13 +15,23 @@
 
     <!-- Custom styles for this template -->
     <link href="css/album.css" rel="stylesheet">
+    <style>
+      .cardinterior { 
+        background-repeat: no-repeat !important;
+        background-position: center center !important;
+        background-size: cover !important;
+        width:100%; height:100%;
+      }
+      p { color:#fff !important;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;}
+    </style>
   </head>
 
   <body>
 
     <section class="jumbotron text-center" style="background: url(assets/jumbotron.JPG); background-repeat: no-repeat; background-position:  center center; background-size: cover;">
       <div class="container">
-        <h1 class="jumbotron-heading" style="color:#ffffff;font-size:60px;font-weight: bold;">Instagram</h1>
+        <h1 class="jumbotron-heading" style="color:#ffffff;font-size:60px;font-weight: bold;">Photos</h1>
         <p class="lead" style="color:#ffffff;">An export of Chris Grabosky (graboskyc) Instagram profile</p>
       </div>
     </section>
@@ -61,19 +71,17 @@
                 var ds = (d.getUTCMonth()+1) +"/"+ d.getUTCDate() + "/"+  d.getUTCFullYear() + " " + d.getUTCHours() + ":" + d.getUTCMinutes();
                 if(media.hasOwnProperty("caption")) { cap = media.caption; }
                 if(media.hasOwnProperty("location")) { loc = media.location; }
-                var apStr = '<div class="card">';
-                if (media.type == "picture") {
-                    apStr = apStr + '<a href="media.html#!'+media._id+'" border="0"><img src="assets/'+media.path+'" width="280" height="280" /></a>';
-                }
-                else if (media.type == "video") {
-                    apStr = apStr + '<video width="280" height="280" controls><source src="assets/'+media.path+'" type="video/mp4"></video>';
-                }
-                apStr = apStr + '<p class="card-text">'+ds+'</p> \
-                    <p class="card-text">'+loc+'</p> \
-                    <p class="card-text">'+cap+'</p> \
-                    </div>';
+                if(cap.length>35) { cap = cap.substr(0,34) + "...";}
+                var apStr = '<div class="card" onclick="window.location=\'media.html#!'+media._id+'\';"> \
+                  <div class="cardinterior" style="background:url(assets/'+media.path+')">\
+                  <div style="position:absolute;bottom:5px;width:90%;left:5%;"><p>'+ds+'</p> \
+                  <p>'+loc+'</p> \
+                  <p>'+cap+'</p></div> \
+                  </div> \
+                  </div>';
                 $("#mainctr").append(apStr);
             });
+            $(".card").height($(".card").width());
         }
 
         $(function() {

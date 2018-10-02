@@ -2,10 +2,6 @@ body {
     min-height: 75rem; /* Can be removed; just added for demo purposes */
   }
   
-  .navbar {
-    margin-bottom: 0;
-  }
-  
   .jumbotron {
     padding-top: 6rem;
     padding-bottom: 6rem;
@@ -35,6 +31,7 @@ body {
   .card {
     float: left;
     width: 33.333%;
+    height: 300px;
     padding: .75rem;
     margin-bottom: 2rem;
     border: 0;
