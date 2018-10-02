@@ -15,13 +15,14 @@
 
     <!-- Custom styles for this template -->
     <link href="css/album.css" rel="stylesheet">
+    <link href="css/cssgram.css" rel="stylesheet">
   </head>
 
   <body>
 
     <section class="jumbotron text-center" style="background: url(assets/jumbotron.JPG); background-repeat: no-repeat; background-position:  center center; background-size: cover;">
       <div class="container">
-        <h1 class="jumbotron-heading"><a href="index.html" style="color:#ffffff;font-size:60px;font-weight: bold;">Photos</a></h1>
+        <h1 class="jumbotron-heading"><a href="index.html" style="color:#ffffff;font-size:60px;font-weight: bold;text-decoration: none;border-bottom:none;" border="0">Photos</a></h1>
         <p class="lead" style="color:#ffffff;">An export of Chris Grabosky (graboskyc) Instagram profile</p>
       </div>
     </section>
@@ -59,10 +60,12 @@
                 if(media.hasOwnProperty("location")) { loc = media.location; }
                 var apStr = '<div class="card" style="width:100% !important;">';
                 if (media.type == "picture") {
+                    if(media.hasOwnProperty("filter")) { apStr = apStr + '<figure class="'+media.filter.toLowerCase()+'" width="100%" height="100%" style="width:100% !important;max-width:100%;max-height:100%;">';}
                     apStr = apStr + '<img src="https://gskywebstore.blob.core.windows.net/media/'+media.path+'" style="width:100% !important;" /> ';
+                    if(media.hasOwnProperty("filter")) { apStr = apStr + '</figure>'; }
                 }
                 else if (media.type == "video") {
-                    apStr = apStr + '<video style="width:100% !important;" controls><source src="https://gskywebstore.blob.core.windows.net/media/'+media.path+'" type="video/mp4"></video>';
+                    apStr = apStr + '<video style="width:100% !important;" controls="controls" autoplay><source src="https://gskywebstore.blob.core.windows.net/media/'+media.path+'" type="video/mp4"></video>';
                 }
                 apStr = apStr + '<p>'+ds+'</p> \
                     <p>'+loc+'</p> \
