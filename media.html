@@ -69,8 +69,34 @@
                 }
                 apStr = apStr + '<p>'+ds+'</p> \
                     <p>'+loc+'</p> \
-                    <p>'+cap+'</p> \
-                    </div>';
+                    <p>'+cap+'</p>';
+
+                if(media.hasOwnProperty("tags")) {
+                    apStr = apStr + '<p><b>Tags On This Site:</b>';
+                    $.each(media.tags, function(i, t) {
+                        apStr = apStr + ' <a href="tags.html#!'+t+'">#'+t+'</a>';
+                    });
+                        apStr = apStr + '</p>';
+                }
+
+                if(media.hasOwnProperty("tags")) {
+                    apStr = apStr + '<p><b>Tags On Twitter:</b>';
+                    $.each(media.tags, function(i, t) {
+                        apStr = apStr + ' <a href="https://twitter.com/search?q=%23'+t+'&src=typd" target="_blank">#'+t+'</a>';
+                    });
+                        apStr = apStr + '</p>';
+                }
+
+                if(media.hasOwnProperty("tags")) {
+                    apStr = apStr + '<p><b>Tags On Instagram:</b>';
+                    $.each(media.tags, function(i, t) {
+                        apStr = apStr + ' <a href="https://www.instagram.com/explore/tags/'+t+'/" target="_blank">#'+t+'</a>';
+                    });
+                        apStr = apStr + '</p>';
+                }
+
+                
+                apStr = apStr + '</div>';
                 $("#mainctr").append(apStr);
             });
         }

@@ -31,7 +31,7 @@
 
     <section class="jumbotron text-center" style="background: url(assets/jumbotron.JPG); background-repeat: no-repeat; background-position:  center center; background-size: cover;">
       <div class="container">
-        <h1 class="jumbotron-heading" style="color:#ffffff;font-size:60px;font-weight: bold;">Photos</h1>
+        <h1 class="jumbotron-heading"><a href="index.html" style="color:#ffffff;font-size:60px;font-weight: bold;">Photos</a></h1>
         <p class="lead" style="color:#ffffff;">An export of Chris Grabosky (graboskyc) Instagram profile</p>
         <p class="lead" style="color:#ffffff;"><a href="videos.html" style="color:#ffffff;">Click here for videos.</a></p>
       </div>
@@ -63,6 +63,7 @@
     <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.0.13/stitch.js"></script>
     <script>
       var cards = [];
+
       function writeBuffer() {
         var apStr = '<div class="row">';
           $.each(cards, function(index, c) {
@@ -101,16 +102,19 @@
               var card = {caption:cap, location:loc, path:media.path, id:media._id, taken:ds};
               bufferRow(card);
           });
+          writeBuffer();
       }
 
-      $(function() {
-      const client = stitch.Stitch.initializeDefaultAppClient('ig-epove');
+      //$(function() {
+        var url = window.self.location.href;
+        var kvp = url.split("#!");
+        const client = stitch.Stitch.initializeDefaultAppClient('ig-epove');
 
-      const db = client.getServiceClient(stitch.RemoteMongoClient.factory, 'mongodb-atlas').db('ig');
+        const db = client.getServiceClient(stitch.RemoteMongoClient.factory, 'mongodb-atlas').db('ig');
 
-      client.auth.loginWithCredential(new stitch.AnonymousCredential()).then(() => 
-      db.collection('media').find({type:"picture"},{ sort: {taken_at: -1}}).asArray()).then(buildGrid).catch(err => {console.error(err)});
-      });
+        client.auth.loginWithCredential(new stitch.AnonymousCredential()).then(() => 
+        db.collection('media').find({type:"picture", tags:{'$in':[kvp[1]]}},{ sort: {taken_at: -1}}).asArray()).then(buildGrid).catch(err => {console.error(err)});
+      //});
     </script>
   </body>
 </html>
