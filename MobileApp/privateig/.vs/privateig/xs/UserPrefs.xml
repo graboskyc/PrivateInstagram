@@ -1,0 +1,17 @@
+﻿<Properties StartupConfiguration="{830FDD38-61C9-45A7-AFA8-C5E524401A37}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="privateig/MainPage.xaml.cs">
+    <Files>
+      <File FileName="privateig/MainPage.xaml.cs" Line="39" Column="33" />
+      <File FileName="privateig/MainPage.xaml" Line="12" Column="15" />
+      <File FileName="privateig.Android/Properties/AndroidManifest.xml" Line="8" Column="12" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.privateig.Android PreferredExecutionTarget="Android.Android_Accelerated_Oreo" AndroidDesignerPreferredTheme="Theme.DeviceDefault.NoActionBar.Fullscreen" />
+  <MonoDevelop.Ide.ItemProperties.privateig FirstBuild="True" />
+  <MultiItemStartupConfigurations />
+</Properties>

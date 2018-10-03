@@ -1,0 +1,19 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "privateig.Android", "privateig.Android\privateig.Android.csproj", "{830FDD38-61C9-45A7-AFA8-C5E524401A37}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "privateig", "privateig\privateig.shproj", "{12D5DA72-3EE0-4267-B645-9618544706DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{830FDD38-61C9-45A7-AFA8-C5E524401A37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{830FDD38-61C9-45A7-AFA8-C5E524401A37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{830FDD38-61C9-45A7-AFA8-C5E524401A37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{830FDD38-61C9-45A7-AFA8-C5E524401A37}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
