@@ -15,6 +15,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/album.css" rel="stylesheet">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
     <style>
       .cardinterior { 
         background-repeat: no-repeat !important;
@@ -70,9 +71,10 @@
           $.each(cards, function(index, c) {
             apStr = apStr + '<div class="card col" onclick="window.location=\'media.html#!'+c.id+'\';"> \
             <video style="width:100% !important;" controls="controls" preload="none"><source src="https://gskywebstore.blob.core.windows.net/media/'+c.path+'" type="video/mp4"></video> \
-            <div style="position:absolute;bottom:5px;width:90%;left:5%;"><p class="pborder">'+c.taken+'</p> \
-            <p class="pborder">'+c.location+'</p> \
-            <p class="pborder">'+c.caption+'</p></div> \
+            <div style="position:absolute;bottom:5px;width:90%;left:5%;">\
+            <p class="pborder"><i class="fa fa-calendar fa-fw"></i> '+c.taken+'</p> \
+            <p class="pborder"><i class="fa fa-map-marker fa-fw"></i> '+c.location+'</p> \
+            <p class="pborder"><i class="fa fa-commenting fa-fw"></i> '+c.caption+'</p></div> \
             </div>';
           });
           apStr = apStr + "</div>";

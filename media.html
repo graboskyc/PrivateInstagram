@@ -16,6 +16,10 @@
     <!-- Custom styles for this template -->
     <link href="css/album.css" rel="stylesheet">
     <link href="css/cssgram.css" rel="stylesheet">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <style>
+    p { font-size: 18px; }
+    </style>
   </head>
 
   <body>
@@ -67,36 +71,36 @@
                 else if (media.type == "video") {
                     apStr = apStr + '<video style="width:100% !important;" controls="controls" autoplay><source src="https://gskywebstore.blob.core.windows.net/media/'+media.path+'" type="video/mp4"></video>';
                 }
-                apStr = apStr + '<p>'+ds+'</p> \
-                    <p>'+loc+'</p> \
-                    <p>'+cap+'</p>';
+                apStr = apStr + '<p class="pborder"><i class="fa fa-calendar fa-fw"></i> '+ds+'</p> \
+                    <p class="pborder"><i class="fa fa-map-marker fa-fw"></i> '+loc+'</p> \
+                    <p class="pborder"><i class="fa fa-commenting fa-fw"></i> '+cap+'</p>';
 
                 if(media.hasOwnProperty("tags")) {
-                    apStr = apStr + '<p><b>Tags On This Site:</b>';
+                    apStr = apStr + '<p><i class="fa fa-hashtag fa-fw" aria-hidden="true"></i><i class="fa fa-rss fa-fw" aria-hidden="true"></i>';
                     $.each(media.tags, function(i, t) {
                         apStr = apStr + ' <a href="tags.html#!'+t+'">#'+t+'</a>';
                     });
-                        apStr = apStr + '</p>';
+                    apStr = apStr + '</p>';
                 }
 
                 if(media.hasOwnProperty("tags")) {
-                    apStr = apStr + '<p><b>Tags On Twitter:</b>';
+                    apStr = apStr + '<p><i class="fa fa-hashtag fa-fw" aria-hidden="true"></i><i class="fa fa-twitter fa-fw" aria-hidden="true"></i>';
                     $.each(media.tags, function(i, t) {
                         apStr = apStr + ' <a href="https://twitter.com/search?q=%23'+t+'&src=typd" target="_blank">#'+t+'</a>';
                     });
-                        apStr = apStr + '</p>';
+                    apStr = apStr + '</p>';
                 }
 
                 if(media.hasOwnProperty("tags")) {
-                    apStr = apStr + '<p><b>Tags On Instagram:</b>';
+                    apStr = apStr + '<p><i class="fa fa-hashtag fa-fw" aria-hidden="true"></i><i class="fa fa-instagram fa-fw" aria-hidden="true"></i>';
                     $.each(media.tags, function(i, t) {
                         apStr = apStr + ' <a href="https://www.instagram.com/explore/tags/'+t+'/" target="_blank">#'+t+'</a>';
                     });
-                        apStr = apStr + '</p>';
+                    apStr = apStr + '</p>';
                 }
 
                 
-                apStr = apStr + '</div>';
+                apStr = apStr + '</div></div>';
                 $("#mainctr").append(apStr);
             });
         }
