@@ -32,7 +32,7 @@ namespace privateig
                     lbl.Text = fileData.FilePath;
                     await ProcessAsync(fileData.FilePath, azurePath);
                     lbl.Text = "Inserting record...";
-                    await pushAtlas(azurePath, txt_cap.Text, txt_loc.Text);
+                    await pushAtlas(azurePath, txt_cap.Text, txt_loc.Text, txt_tags.Text);
                     lbl.Text = "Complete!";
                 }
             }
@@ -43,10 +43,11 @@ namespace privateig
 
         }
 
-        private static async Task pushAtlas(string _azurePath, string cap, string loc) {
+        private static async Task pushAtlas(string _azurePath, string cap, string loc, string tags) {
             string atlas = "";
             if (cap.Length > 0) { atlas += "&caption=" + cap; }
             if (loc.Length > 0) { atlas += "&location=" + loc; }
+            if (tags.Length > 0) { atlas += "&tags=" + tags; }
             atlas += "&type=picture&path=" + _azurePath;
             var webClient = new WebClient();
             webClient.DownloadDataAsync(new Uri(atlas));
