@@ -44,7 +44,7 @@ namespace privateig
         }
 
         private static async Task pushAtlas(string _azurePath, string cap, string loc, string tags) {
-            string atlas = "https://webhooks.mongodb-stitch.com/api/client/v2.0/app/ig-epove/service/newMedia/incoming_webhook/new?secret=testtest1234";
+            string atlas = Secret.getStitchUrl();
             if (cap.Length > 0) { atlas += "&caption=" + cap; }
             if (loc.Length > 0) { atlas += "&location=" + loc; }
             if (tags.Length > 0) { atlas += "&tags=" + tags; }
@@ -59,8 +59,7 @@ namespace privateig
             CloudStorageAccount storageAccount = null;
             CloudBlobContainer cloudBlobContainer = null;
 
-            string storageConnectionString = "DefaultEndpointsProtocol=https;AccountName=gskywebstore;AccountKey=LD3g8N2SettI+H4KwxeYTrvxNFpX+OxZXQ58Ox7keEMw2dmK7IVFg/8omsnAYcCPW8AmNiUtxnHfw8mKWkhdCw==;";
-
+            string storageConnectionString = Secret.getStorageConStr();
             // Check whether the connection string can be parsed.
             if (CloudStorageAccount.TryParse(storageConnectionString, out storageAccount))
             {

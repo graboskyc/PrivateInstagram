@@ -1,9 +1,8 @@
 ﻿<Properties StartupConfiguration="{830FDD38-61C9-45A7-AFA8-C5E524401A37}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="privateig/MainPage.xaml.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="privateig/Secret.cs">
     <Files>
-      <File FileName="privateig/MainPage.xaml.cs" Line="39" Column="33" />
-      <File FileName="privateig/MainPage.xaml" Line="12" Column="15" />
-      <File FileName="privateig.Android/Properties/AndroidManifest.xml" Line="8" Column="12" />
+      <File FileName="privateig/MainPage.xaml.cs" Line="59" Column="55" />
+      <File FileName="privateig/Secret.cs" Line="11" Column="191" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
