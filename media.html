@@ -71,9 +71,9 @@
                 else if (media.type == "video") {
                     apStr = apStr + '<video style="width:100% !important;" controls="controls" autoplay><source src="https://gskywebstore.blob.core.windows.net/media/'+media.path+'" type="video/mp4"></video>';
                 }
-                apStr = apStr + '<p class="pborder"><i class="fa fa-calendar fa-fw"></i> '+ds+'</p> \
-                    <p class="pborder"><i class="fa fa-map-marker fa-fw"></i> '+loc+'</p> \
-                    <p class="pborder"><i class="fa fa-commenting fa-fw"></i> '+cap+'</p>';
+                apStr = apStr + '<p class="pborder"><i class="fa fa-calendar fa-fw"></i> '+ds+'</p>';
+                if(loc.length > 0) { apStr = apStr + '<p class="pborder"><i class="fa fa-map-marker fa-fw"></i> '+loc+'</p> '; }
+                if(cap.length > 0) { apStr = apStr + '<p class="pborder"><i class="fa fa-commenting fa-fw"></i> '+cap+'</p>'; }
 
                 if(media.hasOwnProperty("tags")) {
                     apStr = apStr + '<p><i class="fa fa-hashtag fa-fw" aria-hidden="true"></i><i class="fa fa-rss fa-fw" aria-hidden="true"></i>';
