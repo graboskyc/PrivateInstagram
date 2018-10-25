@@ -45,9 +45,9 @@ namespace privateig
 
         private static async Task pushAtlas(string _azurePath, string cap, string loc, string tags) {
             string atlas = Secret.getStitchUrl();
-            if (cap.Length > 0) { atlas += "&caption=" + cap; }
-            if (loc.Length > 0) { atlas += "&location=" + loc; }
-            if (tags.Length > 0) { atlas += "&tags=" + tags; }
+            if (!String.IsNullOrEmpty(cap)) { atlas += "&caption=" + cap; }
+            if (!String.IsNullOrEmpty(loc)) { atlas += "&location=" + loc; }
+            if (!String.IsNullOrEmpty(tags)) { atlas += "&tags=" + tags; }
             atlas += "&type=picture&path=" + _azurePath;
             var webClient = new WebClient();
             webClient.DownloadDataAsync(new Uri(atlas));

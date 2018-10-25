@@ -1,13 +1,16 @@
 ﻿<Properties StartupConfiguration="{830FDD38-61C9-45A7-AFA8-C5E524401A37}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="privateig/Secret.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="privateig/MainPage.xaml.cs">
     <Files>
-      <File FileName="privateig/MainPage.xaml.cs" Line="59" Column="55" />
-      <File FileName="privateig/Secret.cs" Line="11" Column="191" />
+      <File FileName="privateig/MainPage.xaml.cs" Line="42" Column="14" />
+      <File FileName="privateig/Secret.cs" Line="10" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/graboskyc/Documents/GitHub/Ig/MobileApp/privateig/privateig/MainPage.xaml.cs" relfile="privateig/MainPage.xaml.cs" line="41" column="1" />
+      <Breakpoint file="/Users/graboskyc/Documents/GitHub/Ig/MobileApp/privateig/privateig/MainPage.xaml.cs" relfile="privateig/MainPage.xaml.cs" line="91" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.privateig.Android PreferredExecutionTarget="Android.Android_Accelerated_Oreo" AndroidDesignerPreferredTheme="Theme.DeviceDefault.NoActionBar.Fullscreen" />

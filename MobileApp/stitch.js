@@ -7,7 +7,11 @@ exports = function(payload, response) {
   if(payload.query.hasOwnProperty("filter")) { updateObj.filter = payload.query.filter; }
   if(payload.query.hasOwnProperty("location")) { updateObj.location = payload.query.location; }
   if(payload.query.hasOwnProperty("caption")) { updateObj.caption = payload.query.caption; }
-  if(payload.query.hasOwnProperty("tags")) { updateObj.tags = payload.query.tags.split(','); }
+  if(payload.query.hasOwnProperty("tags")) { 
+    if(payload.query.tags.length > 1) {
+      updateObj.tags = payload.query.tags.split(','); 
+    }
+  }
   conn.insertOne(updateObj);
   
   var html="";
