@@ -43,14 +43,6 @@
       </div>
     </div>
 
-    <footer class="text-muted">
-      <div class="container">
-        <a name="bottom"></a>
-        <p style="text-align:center;width:100%;"><a href="#bottom" onclick="makeStitchRequest(globalCounter);">Click to load next 12 pictures.</a></p>
-        <p style="text-align:center;width:100%;"><a href="allPhotos.html">Click here to see all photos.</a></p>
-      </div>
-    </footer>
-
     <div id="users-device-size">
         <div id="xs" class="visible-xs"></div>
         <div id="sm" class="visible-sm"></div>
@@ -101,38 +93,26 @@
         }
       }
       function buildGrid(docs) {
-        var i = 0;
-        var startCt = (globalCounter-1)*12;
-        var upTo = globalCounter*12;
-        globalCounter = globalCounter + 1;
           docs.map(media=> {
-              if ((i >= startCt ) && (i<upTo)) {
-                var cap = "";
-                var loc = "";
-                var d = media.taken_at;
-                var ds = (d.getUTCMonth()+1) +"/"+ d.getUTCDate() + "/"+  d.getUTCFullYear() + " " + d.getUTCHours() + ":" + d.getUTCMinutes();
-                if(media.hasOwnProperty("caption")) { cap = media.caption; }
-                if(media.hasOwnProperty("location")) { loc = media.location; }
-                if(cap.length>35) { cap = cap.substr(0,34) + "...";}
-                var card = {caption:cap, location:loc, path:media.path, id:media._id, taken:ds};
-                bufferRow(card);
-              }
-              i = i + 1;
+              var cap = "";
+              var loc = "";
+              var d = media.taken_at;
+              var ds = (d.getUTCMonth()+1) +"/"+ d.getUTCDate() + "/"+  d.getUTCFullYear() + " " + d.getUTCHours() + ":" + d.getUTCMinutes();
+              if(media.hasOwnProperty("caption")) { cap = media.caption; }
+              if(media.hasOwnProperty("location")) { loc = media.location; }
+              if(cap.length>35) { cap = cap.substr(0,34) + "...";}
+              var card = {caption:cap, location:loc, path:media.path, id:media._id, taken:ds};
+              bufferRow(card);
           });
       }
 
-      function makeStitchRequest(skipct) {
-        client.auth.loginWithCredential(new stitch.AnonymousCredential()).then(() => 
-      db.collection('media').find({type:"picture"}, { sort: {taken_at: -1}}).asArray()).then(buildGrid).catch(err => {console.error(err)});
-      }
-
-      const client = stitch.Stitch.initializeDefaultAppClient('ig-epove');
-      const db = client.getServiceClient(stitch.RemoteMongoClient.factory, 'mongodb-atlas').db('ig');
-      var globalCounter = 0;
-
       $(function() {
-        globalCounter = 1;
-        makeStitchRequest(globalCounter);
+      const client = stitch.Stitch.initializeDefaultAppClient('ig-epove');
+
+      const db = client.getServiceClient(stitch.RemoteMongoClient.factory, 'mongodb-atlas').db('ig');
+
+      client.auth.loginWithCredential(new stitch.AnonymousCredential()).then(() => 
+      db.collection('media').find({type:"picture"},{ sort: {taken_at: -1}}).asArray()).then(buildGrid).catch(err => {console.error(err)});
       });
     </script>
   </body>
