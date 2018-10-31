@@ -1,15 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:privateig" x:Class="privateig.MainPage">
     <StackLayout>
-        <Label Text="Post pic to blog..." XAlign="Center" FontSize="34" />
-        <Label Text="Caption:" />
-        <Entry x:Name="txt_cap" ></Entry>
-        <Label Text="Location:" />
-        <Entry x:Name="txt_loc" ></Entry>
-        <Label Text="CSV of Tags:" />
-        <Entry x:Name="txt_tags" ></Entry>
-        <Button Text="Pick Photo and Upload" Clicked="Handle_FileClicked" ></Button>
-        <Label Text="Status Window..." x:Name="lbl"/> 
+        <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
+                <Label Text="Post pic to blog..." XAlign="Center" FontSize="34" />
+                <Label Text="Caption:" />
+                <Entry x:Name="txt_cap" ></Entry>
+                <Label Text="Location:" />
+                <Entry x:Name="txt_loc" ></Entry>
+                <Label Text="CSV of Tags:" />
+                <Entry x:Name="txt_tags" ></Entry>
+                <Label Text="Filters:" />
+                <Picker x:Name="ddl_filter">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                        <x:String>NOFILTER</x:String>
+                        <x:String>_1977</x:String>
+                        <x:String>aden</x:String>
+                         <x:String>brannan</x:String>
+                         <x:String>brooklyn</x:String>
+                         <x:String>clarendon</x:String>
+                         <x:String>earlybird</x:String>
+                         <x:String>gingham</x:String>
+                         <x:String>hudson</x:String>
+                         <x:String>inkwell</x:String>
+                         <x:String>kelvin</x:String>
+                         <x:String>lark</x:String>
+                         <x:String>lofi</x:String>
+                         <x:String>maven</x:String>
+                         <x:String>mayfair</x:String>
+                         <x:String>moon</x:String>
+                         <x:String>nashville</x:String>
+                         <x:String>perpetua</x:String>
+                         <x:String>reyes</x:String>
+                         <x:String>rise</x:String>
+                         <x:String>slumber</x:String>
+                         <x:String>stinson</x:String>
+                         <x:String>toaster</x:String>
+                         <x:String>valencia</x:String>
+                         <x:String>walden</x:String>
+                         <x:String>willow</x:String>
+                        <x:String>xpro2</x:String>
+                            </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <Button Text="Pick Photo and Upload" Clicked="Handle_FileClicked" ></Button>
+                <Label Text="Status Window..." x:Name="lbl"/> 
+            </StackLayout>
+        </ScrollView>
         
     </StackLayout>
 </ContentPage>

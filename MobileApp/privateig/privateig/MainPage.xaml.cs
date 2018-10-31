@@ -32,7 +32,7 @@ namespace privateig
                     lbl.Text = fileData.FilePath;
                     await ProcessAsync(fileData.FilePath, azurePath);
                     lbl.Text = "Inserting record...";
-                    await pushAtlas(azurePath, txt_cap.Text, txt_loc.Text, txt_tags.Text);
+                    await pushAtlas(azurePath, txt_cap.Text, txt_loc.Text, txt_tags.Text, ddl_filter.SelectedItem.ToString());
                     lbl.Text = "Complete!";
                 }
             }
@@ -43,8 +43,11 @@ namespace privateig
 
         }
 
-        private static async Task pushAtlas(string _azurePath, string cap, string loc, string tags) {
+        private static async Task pushAtlas(string _azurePath, string cap, string loc, string tags, string filter) {
             string atlas = Secret.getStitchUrl();
+            if (!String.IsNullOrEmpty(filter)) {
+                if (filter != "NOFILTER") { atlas += "&filter=" + filter; }
+            }
             if (!String.IsNullOrEmpty(cap)) { atlas += "&caption=" + cap; }
             if (!String.IsNullOrEmpty(loc)) { atlas += "&location=" + loc; }
             if (!String.IsNullOrEmpty(tags)) { atlas += "&tags=" + tags; }
