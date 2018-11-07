@@ -66,7 +66,7 @@
                 if (media.type == "picture") {
                     if(media.hasOwnProperty("filter")) { apStr = apStr + '<figure class="'+media.filter.toLowerCase()+'" width="100%" height="100%" style="width:100% !important;max-width:100%;max-height:100%;">';}
                     apStr = apStr + '<img src="https://gskywebstore.blob.core.windows.net/media/'+media.path+'" style="width:100% !important;"';
-                    if(media.hasOwnProperty('cva')) { apStr = apStr + 'title="Azure Says: '+media.cva.description.captions[0].text + '"'+ 'alt="Azure Says: '+media.cva.description.captions[0].text + '"'; }
+                    if(media.hasOwnProperty('cva')) { if(media.cva.description.captions.length>0) { apStr = apStr + 'title="Azure Says: '+media.cva.description.captions[0].text + '"'+ 'alt="Azure Says: '+media.cva.description.captions[0].text + '"'; }}
                     apStr = apStr + '/> ';
                     if(media.hasOwnProperty("filter")) { apStr = apStr + '</figure>'; }
                 }
@@ -102,7 +102,9 @@
                 }
 
                 if(media.hasOwnProperty('cva')) {
-                    apStr = apStr + '<p><i class="fa fa-eye fa-fw" aria-hidden="true"></i> Azure Says This Is: '+media.cva.description.captions[0].text;
+                    if(media.cva.description.captions.length>0) { 
+                        apStr = apStr + '<p><i class="fa fa-eye fa-fw" aria-hidden="true"></i> Azure Says This Is: '+media.cva.description.captions[0].text;
+                    }
                 }
 
 

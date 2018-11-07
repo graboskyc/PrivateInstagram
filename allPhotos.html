@@ -73,6 +73,7 @@
             <p class="pborder"><i class="fa fa-calendar fa-fw"></i> '+c.taken;
             if(c.location.length > 0) { apStr = apStr + '&nbsp;<i class="fa fa-map-marker fa-fw"></i>'; }
             if(c.caption.length > 0) { apStr = apStr + '&nbsp;<i class="fa fa-commenting fa-fw"></i>'; }
+            if(c.cva.length > 0) { apStr = apStr + '&nbsp;<i class="fa fa-eye fa-fw"></i>'; }
             apStr = apStr+'</p> ';
             
             apStr = apStr + '</div></div></div>';
@@ -96,12 +97,14 @@
           docs.map(media=> {
               var cap = "";
               var loc = "";
+              var vis = "";
               var d = media.taken_at;
               var ds = (d.getUTCMonth()+1) +"/"+ d.getUTCDate() + "/"+  d.getUTCFullYear() + " " + d.getUTCHours() + ":" + d.getUTCMinutes();
               if(media.hasOwnProperty("caption")) { cap = media.caption; }
               if(media.hasOwnProperty("location")) { loc = media.location; }
+              if(media.hasOwnProperty('cva')) { if(media.cva.description.captions.length>0) { vis = media.cva.description.captions[0].text;}}
               if(cap.length>35) { cap = cap.substr(0,34) + "...";}
-              var card = {caption:cap, location:loc, path:media.path, id:media._id, taken:ds};
+              var card = {caption:cap, location:loc, path:media.path, id:media._id, taken:ds, cva:vis};
               bufferRow(card);
           });
       }
