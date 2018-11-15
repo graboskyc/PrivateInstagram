@@ -103,7 +103,7 @@
 
                 if(media.hasOwnProperty('cva')) {
                     if(media.cva.description.captions.length>0) { 
-                        apStr = apStr + '<p><i class="fa fa-eye fa-fw" aria-hidden="true"></i> Azure Says This Is: '+media.cva.description.captions[0].text;
+                        apStr = apStr + '<p><i class="fa fa-eye fa-fw" aria-hidden="true"></i> Azure is '+Math.floor(media.cva.description.captions[0].confidence*1000)/10+'% sure this is: '+media.cva.description.captions[0].text;
                     }
                 }
 

@@ -9,7 +9,8 @@ exports = function(payload, response) {
   if(payload.query.hasOwnProperty("caption")) { updateObj.caption = payload.query.caption; }
   if(payload.query.hasOwnProperty("tags")) { 
     if(payload.query.tags.length > 1) {
-      updateObj.tags = payload.query.tags.split(','); 
+      var ts = payload.query.tags.replace(/\s/g, '');
+      updateObj.tags = ts.split(','); 
     }
   }
   conn.insertOne(updateObj);
