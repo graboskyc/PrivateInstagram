@@ -12,7 +12,7 @@ exports = function(payload, response) {
       var ts = payload.query.tags.replace(/\s/g, '');
       updateObj.tags = ts.split(','); 
     }
-  }
+  } 
   conn.insertOne(updateObj);
   
   var html="";

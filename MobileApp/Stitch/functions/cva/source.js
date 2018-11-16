@@ -1,9 +1,7 @@
-// used to update existing records created before CVA trigger to get azure cognitive vision
-
-exports = async function(payload,response) {
+exports = async function(changeEvent) {
+  var doc = changeEvent.fullDocument;
+  if(doc.type == "picture"){
     var conn = context.services.get("mongodb-atlas").db("ig").collection("media");
-    var doc = await conn.findOne({cva:{$exists:false},type:"picture"});
-  
     const httpService = context.services.get("cva");
     
     var uri = "https://eastus.api.cognitive.microsoft.com/vision/v1.0/analyze?visualFeatures=Description,Tags&language=en";
@@ -16,11 +14,5 @@ exports = async function(payload,response) {
     var res = await cvaresult;
     
     conn.updateOne({_id:doc._id},{$set: {cva: JSON.parse(res.body.text()), trigger:data.url}});
-    
-    console.log(doc._id + " " + res);
-    
-    response.setHeader("Content-Type", "text/html");
-    response.setBody(doc._id + " " + res);
-    
-  };
-  
+  }
+};

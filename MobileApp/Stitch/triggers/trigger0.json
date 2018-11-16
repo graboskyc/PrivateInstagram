@@ -1,0 +1,17 @@
+{
+    "id": "5bdb13bc3e0e0be590de2a50",
+    "name": "trigger0",
+    "type": "DATABASE",
+    "config": {
+        "operation_types": [
+            "INSERT"
+        ],
+        "database": "ig",
+        "collection": "media",
+        "service_name": "mongodb-atlas",
+        "match": {},
+        "full_document": true
+    },
+    "function_name": "cva",
+    "disabled": false
+}

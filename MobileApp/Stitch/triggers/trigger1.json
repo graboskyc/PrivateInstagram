@@ -1,0 +1,21 @@
+{
+    "id": "5beef94ffdc728f262430012",
+    "name": "trigger1",
+    "type": "DATABASE",
+    "config": {
+        "operation_types": [
+            "INSERT"
+        ],
+        "database": "ig",
+        "collection": "media",
+        "service_name": "mongodb-atlas",
+        "match": {
+            "rek": {
+                "$exists": false
+            }
+        },
+        "full_document": true
+    },
+    "function_name": "rek",
+    "disabled": false
+}

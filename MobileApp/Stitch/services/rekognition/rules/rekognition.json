@@ -1,0 +1,7 @@
+{
+    "id": "5beadc7cfdc728550b280a4a",
+    "name": "rekognition",
+    "actions": [
+        "rekognition:DetectLabels"
+    ]
+}

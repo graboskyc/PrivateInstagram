@@ -1,0 +1,8 @@
+{
+    "app_id": "ig-epove",
+    "config_version": 20180301,
+    "name": "ig",
+    "location": "US-VA",
+    "deployment_model": "GLOBAL",
+    "security": {}
+}
