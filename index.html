@@ -82,6 +82,7 @@
             if(c.location.length > 0) { apStr = apStr + '&nbsp;<i class="fa fa-map-marker fa-fw"></i>'; }
             if(c.caption.length > 0) { apStr = apStr + '&nbsp;<i class="fa fa-commenting fa-fw"></i>'; }
             if(c.cva.length > 0) { apStr = apStr + '&nbsp;<i class="fa fa-eye fa-fw"></i>'; }
+            if(c.rek) { apStr = apStr + '&nbsp;<i class="fa fa-tag fa-fw"></i>'; }
             apStr = apStr+'</p> ';
             
             apStr = apStr + '</div></div></div>';
@@ -111,13 +112,15 @@
                 var cap = "";
                 var loc = "";
                 var vis = "";
+                var rekvis = false;
                 var d = media.taken_at;
                 var ds = (d.getUTCMonth()+1) +"/"+ d.getUTCDate() + "/"+  d.getUTCFullYear() + " " + d.getUTCHours() + ":" + d.getUTCMinutes();
                 if(media.hasOwnProperty("caption")) { cap = media.caption; }
                 if(media.hasOwnProperty("location")) { loc = media.location; }
                 if(media.hasOwnProperty('cva')) { if(media.cva.description.captions.length>0) { vis = media.cva.description.captions[0].text;}}
+                if(media.hasOwnProperty("rek")) { rekvis = true; }
                 if(cap.length>35) { cap = cap.substr(0,34) + "...";}
-                var card = {caption:cap, location:loc, path:media.path, id:media._id, taken:ds, cva:vis};
+                var card = {caption:cap, location:loc, path:media.path, id:media._id, taken:ds, cva:vis, rek:rekvis};
                 bufferRow(card);
               }
               i = i + 1;
