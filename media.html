@@ -107,6 +107,14 @@
                     }
                 }
 
+                if(media.hasOwnProperty("rek")) {
+                    apStr = apStr + '<p><i class="fa fa-eye fa-fw" aria-hidden="true"></i> AWS says this may be: ';
+                    $.each(media.rek.Labels, function(i, t) {
+                        apStr = apStr +t.Name+' ('+Math.floor(t.Confidence)+'%), ';
+                    });
+                    apStr = apStr + '</p>';
+                }
+
 
 
                 
