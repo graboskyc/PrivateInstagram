@@ -6,7 +6,7 @@ This is a simple website demonstrating MongoDB Atlas, MongoDB Stitch, Azure Cogn
 
 Basically it was orginally an export of Instagram (see below) loaded into MongoDB Atlas then building a grid of those images using Stitch Query Anywhere. Now extra functionality exists such that there is a Stitch REST API that accepts uploads from a mobile app to upload new photos to Azure Blob Storage, store the record in the MongoDB DB, then use Stitch Triggers to automatically call the Cognitive Vision and Rekognition APIs to discover what the photo is a picture of.
 
-![](SS/FC01.png)
+![](Sscreenshots/FC01.png)
 
 ## Getting Data
 * In your instagram settings, there is a button to export your data. This can take up to a few days. However once exported, unzip the file they send you.
@@ -20,9 +20,9 @@ Basically it was orginally an export of Instagram (see below) loaded into MongoD
 
 # Screenshots
 ## Mobile App
-![](SS/SS01.png)
+![](Screenshots/SS01.png)
 
 ## Web Site (Stitch Query Anywhere)
-![](SS/SS02.png)
+![](Screenshots/SS02.png)
 
-![](SS/SS03.png)
+![](Screenshots/SS03.png)
