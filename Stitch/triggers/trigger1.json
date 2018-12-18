@@ -14,7 +14,8 @@
                 "$exists": false
             }
         },
-        "full_document": true
+        "full_document": true,
+        "unordered": false
     },
     "function_name": "rek",
     "disabled": false

@@ -3,8 +3,7 @@
     "name": "rekognition",
     "type": "aws",
     "config": {
-        "accessKeyId": "",
-        "region": "us-east-1"
+        "accessKeyId": ""
     },
     "version": 1
 }

@@ -4,5 +4,10 @@
     "name": "ig",
     "location": "US-VA",
     "deployment_model": "GLOBAL",
-    "security": {}
+    "security": {},
+    "hosting": {
+        "enabled": true,
+        "custom_domain": "gsky.us",
+        "app_default_domain": "ig-epove.mongodbstitch.com"
+    }
 }

@@ -1,0 +1,9 @@
+{
+    "id": "5c06ad640c4db16964b144af",
+    "name": "twil",
+    "type": "twilio",
+    "config": {
+        "sid": ""
+    },
+    "version": 1
+}
